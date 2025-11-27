@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shoe Listing</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 40px 20px; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.card, #portfolioCard {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 320px; 
+    padding: 20px;
+    box-sizing: border-box; 
+    text-align: center;
+    animation: fadeIn 0.6s ease;
+}
+
+/* Portfolio Card Specific Styles */
+#portfolioCard {
+    text-align: left;
+    display: none;
+    min-height: 400px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px; 
+}
+
+.pay-btn {
+    background-color: #0052ff;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    width: 100%;
+}
+
+.pay-btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    background-color: #003fcc;
+}
+
+/* New CSS class for Portfolio DIV */
+.dynamic-btn-style {
+    background-color: #0052ff;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    
+    margin-top: 10px; 
+    width: 100%; 
+    text-align: center; 
+    
+    /* HIDE ON LOAD */
+    display: none; 
+    visibility: hidden;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+    margin-top: 0; 
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+.overlay-card {
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    width: 360px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.check-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: strokeAnim 0.6s ease forwards;
+}
+
+.check {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: strokeAnim 0.4s ease forwards 0.6s;
+}
+
+@keyframes strokeAnim {
+    to { stroke-dashoffset: 0; }
+}
+
+/* --- PORTFOLIO DISPLAY STYLES --- */
+#portfolioResults h3 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#portfolioResults ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+#portfolioResults li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #ccc;
+    overflow: hidden; 
+    font-weight: bold;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+}
+
+#portfolioResults li:last-child {
+    border-bottom: none;
+}
+/* ------------------------------------- */
+
+</style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="card">
+        <img src="Gamma11.jpg" alt="Shoes" />
+        <h2>Air Jordan 11 Gamma</h2>
+        <div class="price">
+            $50.00 
+            <span title="USDC, or USD Coin, is a type of cryptocurrency known as a stablecoin, designed to maintain a stable value by being pegged 1:1 to the US dollar, meaning each USDC is backed by an equivalent amount of real USD reserves held by regulated financial institutions.">USDC</span>
+        </div>
+
+        <div class="button-group">
+            <button type="button" class="pay-btn" id="pay-btn">Connect Coinbase and Pay Now!</button>
+            
+            <div id="getPortfolio" class="dynamic-btn-style">
+                Click here to get your portfolio data!
+            </div>
+            
+            </div>
+        
+    </div>
+    
+    <div id="portfolioCard">
+        <div id="portfolioResults">
+            <h3 style="margin-top:0;">Your Portfolio</h3>
+            <p>Connect your account and click "Get Portfolio Data!" to view your holdings here.</p>
+        </div>
+        
+        </div>
+</div>
+
+<div id="overlay" class="overlay">
+    <div class="overlay-card">
+    <div style="width: 90px; height: 90px; margin: 0 auto 20px auto;">
+        <svg viewBox="0 0 52 52" style="width: 100%; height: 100%;">
+        <circle class="check-circle" cx="26" cy="26" r="25" fill="none" stroke="#28a745" stroke-width="3"/>
+        <path class="check" fill="none" stroke="#28a745" stroke-width="3" d="M14 27 l8 8 l16 -16"/>
+        </svg>
+    </div>
+    <h2 style="margin-top: 0; color: #28a745;">Payment Successful!</h2>
+    <div id="details" style="text-align: left; margin-top: 20px; font-size: 15px; line-height: 1.5;"></div>
+    <button id="closeOverlay" style="margin-top: 15px; background: #28a745; color:white; padding:12px 18px; border:none; border-radius:10px; font-size:15px; cursor:pointer; width:100%;">Close</button>
+    </div>
+</div>
+
+<div id="exitOverlay" class="overlay">
+    <div class="overlay-card">
+    <h2 style="margin-top: 0; color: #d9534f;">Attempt Cancelled</h2>
+    <p style="font-size: 15px; margin-bottom: 25px;">
+        It looks like you closed out of your attempt.<br><br>
+        You can restart the process anytime.
+    </p>
+    <button id="retryPayment" style="background: #0052ff; color: white; padding: 12px 18px; border:none; border-radius:10px; font-size:15px; cursor:pointer; width:100%; margin-bottom:15px;">Try Again</button>
+    <button id="closeExitOverlay" style="background:#aaa; color:white; padding:12px 18px; border:none; border-radius:10px; font-size:15px; cursor:pointer; width:100%;">Close</button>
+    </div>
+</div>
+
+<script type="module" src="Link.js"></script>
+
+</body>
+</html>

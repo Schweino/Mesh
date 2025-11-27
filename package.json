@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@meshconnect/web-link-sdk": "^3.4.0",
+    "vite": "^7.2.4"
+  },
+  "name": "mesh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Link.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
